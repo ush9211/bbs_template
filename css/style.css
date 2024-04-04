@@ -156,6 +156,9 @@ span.space{
     background:#fff;
     padding: 40px;
 }
+.listbox{
+    border-bottom: 1px solid #ddd;
+}
 .listbox h1{
     font-size: 20px;
 }
@@ -200,6 +203,30 @@ span.space{
 .re{
     display: inline-block;
     width: 20px;
+}
+.comment-btn{
+    width: 10%;
+}
+.comments .btn-box{
+    position:relative;
+    cursor: pointer;
+}
+.edel{
+    border: 1px solid #434c53;
+    width: 70px;
+    padding: 5px;
+    background: #fff;
+    position: absolute;
+    z-index: 100;
+    right: -45px;
+    display: none;
+}
+.edel a{
+    margin: 0 5px;
+}
+.edel a:link{
+	color: #000;
+	text-decoration: none;
 }
 
 /* PAGING */

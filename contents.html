@@ -39,11 +39,93 @@
             </aside>
             <!-- /A SIDE -->
 
+            <!-- 댓글용 썸머노트 -->
+            <link rel="stylesheet" href="css/summernote-bs4.css">
+            <script src="js/summernote-bs4.js"></script>
+            <script>
+                $(function(){
+                    $("#comment").summernote({
+                        width:'90%',
+                        height:'60px',
+                        placeholder: '여기에 댓글을 입력하세요.',
+                        toolbar:[
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrouth', 'superscript', 'subscript']],
+                            ['fontname', ['fontname']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']]
+                        ]
+                    });
+                });
+            </script>
+
             <section>
-                <!-- contentsbox -->
-                <div class="contents">
-                    본문
+                <!-- listbox -->
+                <div class="listbox">
+                        <h3 class="mt-5"><i class="ri-arrow-right-double-line"></i><%=rs.getTitle() %></h3>
+                        <div class="mt-2 mb-5 pt-2 border-top text-right">
+                            <span class="mr-4"><label class="font-italic">hit:</label><%=rs.getHit() %></span>
+                            <span class="mr-4 text-weight-bold"><%=rs.getWriter() %></span>
+                            <span class="mr-2"><%=wdate %></span>
+                        </div>
+                        <!--
+                        <div class="mt-2 pt-2 border-top file-box">
+                            <span>
+                                <label class="font-italic">file :</label>
+                                <a href="#">asdf.gif</a>  <a href="#">asdf.gif</a>
+                            </span>
+                        </div>
+                        -->
+                        <div class="content-box mt-3">
+                            <%=rs.getContent() %>
+                        </div>
+                        <div class="my-5 pt-5 text-right">
+                            <a href="./?cpg=<%=cpg %>" class="btn btn-primary mr-3">목록</a>
+                         <a href="rewrite.jsp?id=<%=id %>&refid=<%=rs.getRefid() %>&depth=<%=rs.getDepth() %>&renum=<%=rs.getRenum() %>&cpg=<%=cpg %>" class="btn btn-primary">답글쓰기</a>
+                         <a href="pass.jsp?id=<%=id %>&mode=edit" class="btn btn-primary">수정</a>
+                         <a href="pass.jsp?id=<%=id %>&mode=del" class="btn btn-danger">삭제</a>
+                        </div>
                 </div>
+
+                <ul class="list-group list-group-flush comments">
+                    <li class="list-group-item flex-column p-5 align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <p class="mb-1 col-8">[홍길동]&nbsp;&nbsp;&nbsp;댓글입니다.</p>
+                            <p class="mb-1 col-3 text-right">
+                                2024.03.31
+                            </p>
+                            <div class="btn-box col-1 text-right">
+                                <i class="ri-more-2-fill"></i>
+                                <div class="edel">
+                                    <a href="edit" title="수정"><i class="ri-edit-2-fill"></i></a>
+                                    <a href="del" title="삭제"><i class="ri-delete-bin-6-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column p-5 align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <p class="mb-1 col-8">[김철수]&nbsp;&nbsp;&nbsp;댓글댓글댓글댓글입니다.</p>
+                            <p class="mb-1 col-3 text-right">
+                                2024.04.04
+                            </p>
+                            <div class="btn-box col-1 text-right">
+                                <i class="ri-more-2-fill"></i>
+                                <div class="edel">
+                                    <a href="edit" title="수정"><i class="ri-edit-2-fill"></i></a>
+                                    <a href="del" title="삭제"><i class="ri-delete-bin-6-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="bg-light list-group-item flex-column p-5 mb-5 align-items-start">
+                        <form name="commentForm" id="commentForm" class="d-flex" method="post" action="">
+                            <textarea name="comment" id="comment"></textarea>
+                            <button type="submit" class="comment-btn">댓글쓰기</button>
+                        </form>
+                    </li>
+                </ul>
+                
 
             </section>
         </div>
